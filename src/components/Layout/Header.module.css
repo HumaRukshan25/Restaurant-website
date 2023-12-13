@@ -1,27 +1,20 @@
 /* Header.module.css */
-
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5rem;
-    background-color: #8a2b06;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    z-index: 10;
-  }
-  
-  
-  
-  .main-image {
-    /* Add styles for the .main-image class */
-    width: 100%; /* Adjust as needed */
-  }
-  
-  /* Add any additional styles for other elements inside .header or .main-image as necessary */
-  
+  color :aliceblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: maroon;
+  padding: 1rem;
+}
+
+.main-image {
+  position: relative;
+  margin-bottom: 20px; /* Add margin to create space below the image */
+}
+
+.main-image img {
+  width: 100%; /* Make the image cover the full horizontal width */
+  height: 100px; /* Adjust the height as needed, leaving space below the image */
+  object-fit: cover; /* Maintain the aspect ratio and cover the specified height */
+}
