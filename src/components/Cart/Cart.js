@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
@@ -7,6 +7,7 @@ import CartContext from '../../store/cart-context';
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
+  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
@@ -16,7 +17,18 @@ const Cart = (props) => {
   };
 
   const cartItemAddHandler = (item) => {
-    cartCtx.addItem({...item, amount: 1});
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
+
+  const orderHandler = () => {
+    // Perform any necessary actions for placing the order here
+    // For example, you can send a request to the server to process the order
+
+    // Log the order details to the console
+    console.log('Order placed with the following items:', cartCtx.items);
+
+    // Update the state to indicate that the order is successful
+    setIsOrderPlaced(true);
   };
 
   const cartItems = (
@@ -34,6 +46,10 @@ const Cart = (props) => {
     </ul>
   );
 
+  const orderMessage = isOrderPlaced && (
+    <p className={classes.orderMessage}>Order successful! Thank you for your purchase.</p>
+  );
+
   return (
     <Modal onClose={props.onClose}>
       {cartItems}
@@ -45,8 +61,13 @@ const Cart = (props) => {
         <button className={classes['button--alt']} onClick={props.onClose}>
           Close
         </button>
-        {hasItems && <button className={classes.button}>Order</button>}
+        {hasItems && (
+          <button className={classes.button} onClick={orderHandler}>
+            Order
+          </button>
+        )}
       </div>
+      {orderMessage}
     </Modal>
   );
 };
